@@ -1,74 +1,84 @@
-from typing import Optional
-
-
 class Node:
-    """
-    Provide necessary documentation
-    """
-    def __init__(self, data=None, next=None):
-        """
-        Provide necessary documentation
-        """
-        self.data = data
-        self.next = next
+  def __init__(self,data):
+    self.data = data
+    self.next = None
 
+class Link:
+  def __init__(self):
+    self.head = None
+    self.count = 0
+  
+  def push(self,data):
+    new = Node(data)
+    new.next = self.head
+    self.head = new
+    self.count += 1
+  
+  def search(self,target):
+    n = self.head
+    result = 0
+    node_number = 0
+    new = {}
+    for i in range(self.count):
+      if(n.data == target):
+        new = {
+            "postion:":i,
+            "node value:":target
+        }
+    print()
+    return new
 
-class LinkedList:
-    """
-    Provide necessary documentation
-    """
-    def __init__(self):
-        """
-        Initialize the head
-        """
-        self.head = None
-
-    def insert_at_end(self, data):
-        """
-        Insert node at end of the list
-        :param data: integer data that will be used to create a node
-        """
-        # Write code here
-
-    def status(self):
-        """
-        It prints all the elements of list.
-        """
-        # write code here
-
-
-class Solution:
-    """
-    Provide necessary documentation
-    """
-    def addTwoNumbers(self, first_list: Optional[LinkedList], second_list: Optional[LinkedList]) -> Optional[LinkedList]:
-        """
-        :param first_list: Linkedlist with non-negative integers
-        :param second_list: Linkedlist with non-negative integers
-        :return: returns the sum as a linked list
-        """
-        # Write code here
-        
         
 
-# Do not edit the following code      
-# Create an instance for LinkedList
-first_list = LinkedList()
-# Create an another instance for LinkedList
-second_list = LinkedList()
-# Read data for first list
-data_for_first_list = list(map(int, input().strip().split(" ")))
-# Add data at the end of first_list
-for data in data_for_first_list:
-    first_list.insert_at_end(data)
-# Read data for second list
-data_for_second_list = list(map(int, input().strip().split(" ")))
-# Add data at the end of second_list
-for data in data_for_second_list:
-    second_list.insert_at_end(data)
-# Create an instance for Solution
-solution = Solution()
-# Pass first_list and second_list to addTwoNumbers, which returns a new linked list
-new_list = solution.addTwoNumbers(first_list, second_list)
-# Display the status of new_list
-new_list.status()
+  def pair(self):
+    n = self.head
+    while(n):
+      print(n.data,end = "->")
+      n = n.next
+    print("\n")
+    
+  def delete_beg(self):
+    temp = self.head
+    self.head = self.head.next
+    temp = None
+  
+  def delete_end(self):
+    for i in range(self.count):
+      if(i == self.count - 1):
+        temp = self.head
+        self.head.next = None
+        temp = None
+
+
+  def reverse(self):
+    curr , prev , next = self.head , None,None
+    while(curr != None):
+      next = curr.next
+      curr.next = prev
+      prev = curr
+      curr = next
+    self.head = prev
+
+l1 = Link()
+# while(1):
+#   x = int(input())
+#   if(x == 1):
+#     val = int(input())
+#     l1.push(val)
+#   elif(x == 2):
+#     l1.reverse()
+#   elif(x == 3):
+#     l1.pair()
+#   elif(x == 4):
+#     search = int(input())
+#     print(l1.search(search))
+
+for i in range(3):
+  val = int(input())
+  l1.push(val)
+
+l1.pair()
+l1.delete_beg()
+l1.pair()
+l1.delete_end()
+l1.pair()
